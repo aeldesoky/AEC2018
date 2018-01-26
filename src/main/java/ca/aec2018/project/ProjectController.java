@@ -155,6 +155,11 @@ public class ProjectController {
         return "map";
     }
 
+    @GetMapping("/docs")
+    public String docs() {
+        return "docs";
+    }
+
     @GetMapping("/wind/{month}")
     @ResponseBody
     public List<GoogleRenewable> getWindData(@PathVariable int month) {

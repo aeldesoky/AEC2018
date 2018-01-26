@@ -3,9 +3,10 @@
  * @type {Converter}
  */
 var converter = new showdown.Converter();
-var md = '[**Showdown**](http://www.showdownjs.com) is *great*\n' +
-    'because:\n\n' +
-    ' - it\'s easy to use\n' +
-    ' - it\'s extensible\n' +
-    ' - works in the server and in the browser';
-var html = converter.makeHtml(md);
+$.ajax({
+    url: "/static/md/docs.md",
+    success: function(markdown){
+        var html = converter.makeHtml(markdown);
+        $("#markdown").append(html);
+    }
+});
