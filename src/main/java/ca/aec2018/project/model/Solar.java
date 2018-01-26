@@ -3,7 +3,7 @@ package ca.aec2018.project.model;
 import javax.persistence.*;
 
 @Entity
-public class Solar {
+public class Solar implements Renewable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -29,6 +29,7 @@ public class Solar {
         this.id = id;
     }
 
+    @Override
     public Double[] getMonths() {
         return months;
     }
@@ -37,11 +38,21 @@ public class Solar {
         this.months = months;
     }
 
+    @Override
     public Double getAnnualAverage() {
         return annualAverage;
     }
 
     public void setAnnualAverage(Double annualAverage) {
         this.annualAverage = annualAverage;
+    }
+
+    @Override
+    public Coordinate getCoordinate() {
+        return coordinate;
+    }
+
+    public void setCoordinate(Coordinate coordinate) {
+        this.coordinate = coordinate;
     }
 }
