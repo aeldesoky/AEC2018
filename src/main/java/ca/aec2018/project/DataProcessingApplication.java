@@ -1,4 +1,4 @@
-package data_processing.java.ca.aec2018.project;
+package ca.aec2018.project;
 
 import ca.aec2018.project.model.*;
 
@@ -6,13 +6,14 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.File;
-import java.util.Scanner;
 
 
 @SpringBootApplication
+@EnableAutoConfiguration
 public class DataProcessingApplication {
 
     @Autowired
@@ -34,8 +35,8 @@ public class DataProcessingApplication {
     }
 
     public DataProcessingApplication() throws FileNotFoundException {
-        File solarFile = new File("scr/data_processing/resources/solarNASA.txt");
-        File windFile = new File("scr/data_processing/resources/windNASA.txt");
+        File solarFile = new File("src/main/resources/solarNASA.txt");
+        File windFile = new File("src/main/resources/windNASA.txt");
 
         Scanner solarScanner = new Scanner(solarFile);
         Scanner windScanner = new Scanner(windFile);
