@@ -22,15 +22,15 @@ public class CoordinateUtil {
             Set<Integer> keys = ProjectApplication.solarData.keySet();
             for(Integer s : keys) {
                 Solar solarObj = ProjectApplication.solarData.get(s);
-                if()
-                    renewablesInRange.add(solarObj);
+                //if()
+                //    renewablesInRange.add(solarObj);
             }
         } else {
             Set<Integer> keys = ProjectApplication.windData.keySet();
             for(Integer w : keys) {
                 Wind solarObj = ProjectApplication.windData.get(w);
-                if()
-                    renewablesInRange.add(solarObj);
+                //if()
+                //    renewablesInRange.add(solarObj);
             }
         }
 

@@ -134,6 +134,9 @@
 {% block scripts %}
     {{ parent() }}
     <script type="text/javascript" src="/static/js/map.js"></script>
+    <script>
+        var type = 'wind';
+    </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvAuBdVZjDGb0-C8kxFVbeSM50bkgtni8&libraries=visualization&callback=initMap">
     </script>

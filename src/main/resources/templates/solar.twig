@@ -116,9 +116,20 @@
         };
 
         function renderGraphForCoordinate(coordinate) {
-            var ctx = document.getElementById("solar-graph").getContext("2d");
-            config.options.title.text = 'Solar Intensity Data for Coordinate (lat: ' + coodinate.latitude + ', lon: ' + coordinate.longitude  + ')';
-            window.myLine = new Chart(ctx, config);
+            console.log(coordinate)
+            $.ajax({
+                url: '/solar/coordinate/'+coordinate[0]+'/'+coordinate[1],
+                success: function(doubles){
+
+                    console.log(doubles);
+                    config.data.datasets[0].data = doubles;
+                    config.options.title.text = 'Solar Intensity Data for Coordinate (lat: ' + coordinate[0] + ', lon: ' + coordinate[1]  + ')';
+                    var ctx = document.getElementById("solar-graph").getContext("2d");
+                    window.myLine = new Chart(ctx, config);
+                    document.getElementById("solar-graph").style.display = 'initial';
+                }
+            });
+
         }
 
         function renderGraphForCoordinates(coorindates) {
@@ -145,6 +156,9 @@
 
 {% block scripts %}
     {{ parent() }}
+    <script>
+        var type = 'solar';
+    </script>
     <script type="text/javascript" src="/static/js/map.js"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvAuBdVZjDGb0-C8kxFVbeSM50bkgtni8&libraries=visualization&callback=initMap">

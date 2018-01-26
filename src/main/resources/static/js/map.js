@@ -32,15 +32,19 @@ function initMap() {
 function addPoint(event) {
     if(firstPoint === undefined || firstPoint === null){
         if(firstMarker !== undefined) {
+
             firstMarker.setMap(null);
             secondMarker.setMap(null);
         }
 
         firstPoint = event.latLng;
+
         firstMarker = new google.maps.Marker({
             position: event.latLng,
             map: map
         });
+
+        renderGraphForCoordinate([event.latLng.lat(), event.latLng.lng()])
     } else {
         if(rectangle !== undefined) {
             rectangle.setMap(null);
@@ -140,7 +144,6 @@ function monthChange(selector) {
 
 }
 
-var type = 'wind';
 function populateHeatMap(month) {
     $.ajax({
         url: '/'+type+'/'+month,

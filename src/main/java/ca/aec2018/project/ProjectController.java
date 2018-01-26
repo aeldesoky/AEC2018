@@ -99,10 +99,10 @@ public class ProjectController {
      * The REST controller method to get the solar data for a specific coordinate.
      * @return The Google JSON objects to render the solar heat map.
      */
-    @GetMapping("/solar/coordinate")
+    @GetMapping("/solar/coordinate/{lat}/{lng}")
     @ResponseBody
-    public ArrayList<Double>  getSolarDataForCoordinate(@RequestBody List<Integer> coordinate) {
-        Coordinate coord = new Coordinate(coordinate.get(0), coordinate.get(1));
+    public ArrayList<Double>  getSolarDataForCoordinate(@PathVariable Double lat, @PathVariable Double lng) {
+        Coordinate coord = new Coordinate(lat, lng);
         return coordinateUtil.getCoordRenewables(true, coord).getMonthValues();
     }
 
