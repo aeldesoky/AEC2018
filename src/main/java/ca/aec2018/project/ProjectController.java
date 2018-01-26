@@ -66,7 +66,7 @@ public class ProjectController {
     @GetMapping("/wind/{month}")
     @ResponseBody
     public List<GoogleRenewable> getWindData(@PathVariable int month) {
-        return renewableService.allRenewableToGoogleRenewable(false, month);
+        return renewableService.getRenewablesByMonth(false, month);
     }
 
     /**
@@ -76,6 +76,6 @@ public class ProjectController {
     @GetMapping("/solar/{month}")
     @ResponseBody
     public List<GoogleRenewable> getSolarData(@PathVariable int month) {
-        return renewableService.allRenewableToGoogleRenewable(false, month);
+        return renewableService.getRenewablesByMonth(false, month);
     }
 }

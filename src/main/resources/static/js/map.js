@@ -21,9 +21,7 @@ function initMap() {
 
     // This example uses a local copy of the GeoJSON stored at
     // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
-    script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
-    document.getElementsByTagName('head')[0].appendChild(script);
-
+    monthChange()
 }
 
 /**
@@ -32,7 +30,6 @@ function initMap() {
  * @param event The click event with a latLng property.
  */
 function addPoint(event) {
-    console.log(event)
     if(firstPoint === undefined || firstPoint === null){
         if(firstMarker !== undefined) {
             firstMarker.setMap(null);
@@ -85,8 +82,9 @@ function addPoint(event) {
  * @param results The json object to render the heatmap.
  */
 function eqfeed_callback(results) {
+    console.log(results)
     var heatmapData = [];
-    for (var i = 0; i < results.features.length; i++) {
+    for (var i = 0; i < results.length; i++) {
         var coords = results.features[i].geometry.coordinates;
         var latLng = new google.maps.LatLng(coords[1], coords[0]);
         heatmapData.push(latLng);
@@ -124,4 +122,24 @@ function max(num1, num2) {
     }
 
     return num2;
+}
+
+function getMonth() {
+    return $('#month')[0].value;
+}
+
+function monthChange(selector) {
+    populateHeatMap(getMonth())
+
+}
+
+var type = 'wind';
+function populateHeatMap(month) {
+    $.ajax({
+        url: '/'+type+'/'+month,
+        success: function(googleObjects){
+            console.log(googleObjects);
+            eqfeed_callback(googleObjects)
+        }
+    });
 }
