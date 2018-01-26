@@ -1,7 +1,9 @@
 package ca.aec2018.project.model;
 
+import java.util.List;
+
 public interface Renewable {
-    Double[] getMonths();
+    List<Double> getMonths();
     Double getAnnualAverage();
     Coordinate getCoordinate();
 }
