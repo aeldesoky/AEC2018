@@ -113,10 +113,22 @@
             }
         };
 
-        //on click action (single coordinate)
-        //perform ajax get
-        //render the graph from response
-        //display graph
+        function renderGraphForCoordinate(coordinate) {
+            console.log(coordinate)
+            $.ajax({
+                url: '/wind/coordinate/'+coordinate[0]+'/'+coordinate[1],
+                success: function(doubles){
+
+                    console.log(doubles);
+                    config.data.datasets[0].data = doubles;
+                    config.options.title.text = 'Wind Intensity Data for Coordinate (lat: ' + coordinate[0] + ', lon: ' + coordinate[1]  + ')';
+                    var ctx = document.getElementById("wind-graph").getContext("2d");
+                    window.myLine = new Chart(ctx, config);
+                    document.getElementById("wind-graph").style.display = 'initial';
+                }
+            });
+
+        }
 
         //on select region action
         //perform ajax get
