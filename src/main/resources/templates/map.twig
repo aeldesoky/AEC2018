@@ -15,13 +15,36 @@
                 margin: 0;
                 padding: 0;
             }
+
+            .container-fluid {
+                margin-top: 20px;
+            }
         </style>
-    <div id="map"></div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col" style="height: 500px">
+                <div id="map"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <select class="mdb-select colorful-select dropdown-primary">
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                </select>
+                <label>Select Month</label>
+            </div>
+        </div>
+    </div>
     <script>
         var map;
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 2,
+                zoom: 3,
                 center: {lat: 56.1304, lng: 106.3468},
                 mapTypeId: 'terrain'
             });
