@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -24,8 +25,8 @@ public class ProjectController {
     @Autowired
     RenewableService renewableService;
 
-    @Autowired
-    CoordinateUtil coordinateUtil;
+
+    CoordinateUtil coordinateUtil = new CoordinateUtil();
 
     /**
      * The controller method for the index page.
@@ -89,8 +90,9 @@ public class ProjectController {
      */
     @GetMapping("/wind/coordinate")
     @ResponseBody
-    public List<GoogleRenewable> getWindDataForCoordinate(@RequestBody List<Integer> coordinate) {
-        return null;
+    public ArrayList<Double> getWindDataForCoordinate(@RequestBody List<Integer> coordinate) {
+        Coordinate coord = new Coordinate(coordinate.get(0), coordinate.get(1));
+        return coordinateUtil.getCoordRenewables(false, coord).getMonthValues();
     }
 
     /**
@@ -99,8 +101,9 @@ public class ProjectController {
      */
     @GetMapping("/solar/coordinate")
     @ResponseBody
-    public List<GoogleRenewable> getSolarDataForCoordinate(@RequestBody List<Integer> coordinate) {
-        return null;
+    public ArrayList<Double>  getSolarDataForCoordinate(@RequestBody List<Integer> coordinate) {
+        Coordinate coord = new Coordinate(coordinate.get(0), coordinate.get(1));
+        return coordinateUtil.getCoordRenewables(true, coord).getMonthValues();
     }
 
     /**
