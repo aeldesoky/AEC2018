@@ -104,7 +104,7 @@ public class ProjectController {
      * The REST controller method to get the wind data for a region enclosed within a rectangle created by two coordinates.
      * @return The Google JSON objects to render the wind heat map.
      */
-    @GetMapping("/wind/coordinate")
+    @GetMapping("/wind/coordinates")
     @ResponseBody
     public List<GoogleRenewable> getWindDataForRegion(@RequestBody List<Integer> coordinateX, @RequestBody List<Integer> coordinateY) {
         return null;
@@ -114,7 +114,7 @@ public class ProjectController {
      * The REST controller method to get the solar data for a region enclosed within a rectangle created by two coordinates.
      * @return The Google JSON objects to render the solar heat map.
      */
-    @GetMapping("/solar/coordinate")
+    @GetMapping("/solar/coordinates")
     @ResponseBody
     public List<GoogleRenewable> getSolarDataForRegion(@RequestBody List<Integer> coordinateX, @RequestBody List<Integer> coordinateY) {
         return null;
