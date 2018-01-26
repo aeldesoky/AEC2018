@@ -34,7 +34,7 @@ public class CoordinateUtil {
             }
         }
 
-        return renewablesInRange;
+        return null;
     }
 
     public Renewable getCoordRenewables(boolean solar, Coordinate coordinate) {

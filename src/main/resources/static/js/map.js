@@ -10,7 +10,7 @@ var rectangle;
  */
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 3,
+        zoom: 4,
         center: {lat: 55.658996, lng: -97.031250},
         mapTypeId: 'terrain'
     });
