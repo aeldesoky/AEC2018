@@ -17,6 +17,9 @@ Material design is dependant on bootstrap, tether, jQuery and popper and are not
 # JQuery
 JQuery is used for html selectors and ajax calls.
 
+# Chart.js
+Chart.js is used for generating a graphical representation of the solar and wind data
+
 # Spring Boot
 This is the backend web framework used to manage the web server. It is used to serve static receiving requests and returning views and static resource handling.
 
