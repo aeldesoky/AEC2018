@@ -37,4 +37,8 @@ public class Coordinate {
     public void setLongitude(Integer longitude) {
         this.longitude = longitude;
     }
+
+    public boolean sameCoord(Coordinate c){
+        return (this.getLatitude() == c.getLatitude() && this.getLongitude() == c.getLongitude());
+    }
 }
