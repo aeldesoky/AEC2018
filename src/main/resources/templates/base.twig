@@ -13,11 +13,15 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}
-        {% endblock %}
+    <nav class="navbar navbar-dark justify-content-between">
+        <a href="/" class="navbar-brand" style="font-size: 20pt; color:#4285f4;">Renewable Map</a>
+    </nav>
 
-        {% block modals %}
-        {% endblock %}
+    {% block content %}
+    {% endblock %}
+
+    {% block modals %}
+    {% endblock %}
     </body>
     <footer>
         {% block footer %}
