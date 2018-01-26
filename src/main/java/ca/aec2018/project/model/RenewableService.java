@@ -1,8 +1,12 @@
 package ca.aec2018.project.model;
 
 import ca.aec2018.project.ProjectApplication;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -19,28 +23,34 @@ public class RenewableService {
      * @param month  - int used to identify the month
      */
     public void renewableToGoogleRenewable(boolean solar, int month) {
-        Renewable renewable = new Solar();
+        ArrayList<GoogleRenewable> googleRenewables = new ArrayList<GoogleRenewable>();
+
+
+        if (solar) {
+
+            HashMap<Integer, Solar> solars = ProjectApplication.solarData;
+            Set<Integer> keys = solars.keySet();
+            for(Integer key : keys) {
+                googleRenewables.add(renewableToGoogleRenewable(solars.get(key),month));
+            }
+        }
+
+        else {
+
+            HashMap<Integer, Wind> winds = ProjectApplication.windData;
+            Set<Integer> keys = winds.keySet();
+            for(Integer key : keys) {
+                googleRenewables.add(renewableToGoogleRenewable(winds.get(key),month));
+            }
+        }
+    }
+
+    private GoogleRenewable renewableToGoogleRenewable(Renewable renewable, int month){
         Double[] coordinates = new Double[2];
         GoogleRenewable googleRenewable = new GoogleRenewable();
         Geometry googleGeometry = new Geometry();
         Properties googleProperties = new Properties();
         Coordinate coordinateObj;
-
-
-
-        if (solar) {
-            Set<Integer> keys = ProjectApplication.solarData.keySet();
-
-            for(Integer key : keys) {
-
-            }
-
-        }
-
-        else {
-
-        }
-
 
         googleGeometry.setType("Point");
         coordinateObj = renewable.getCoordinate();
@@ -97,6 +107,7 @@ public class RenewableService {
 
         googleRenewable.setType("Feature");
 
+        return googleRenewable;
 
     }
 
