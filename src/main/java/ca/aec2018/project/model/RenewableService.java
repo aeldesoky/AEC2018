@@ -63,44 +63,40 @@ public class RenewableService {
         googleRenewable.setGeometry(googleGeometry);
 
         switch (month) {
-            case 1:
+            case 0:
                 googleProperties.setMag(renewable.getJanuary());
                 break;
-            case 2:
+            case 1:
                 googleProperties.setMag(renewable.getFebruary());
                 break;
-            case 3:
+            case 2:
                 googleProperties.setMag(renewable.getMarch());
                 break;
-            case 4:
+            case 3:
                 googleProperties.setMag(renewable.getApril());
                 break;
-            case 5:
+            case 4:
                 googleProperties.setMag(renewable.getMay());
                 break;
-            case 6:
+            case 5:
                 googleProperties.setMag(renewable.getJune());
                 break;
-            case 7:
+            case 6:
                 googleProperties.setMag(renewable.getJuly());
                 break;
-            case 8:
+            case 7:
                 googleProperties.setMag(renewable.getAugust());
                 break;
-
-            case 9:
+            case 8:
                 googleProperties.setMag(renewable.getSeptember());
                 break;
-
-            case 10:
+            case 9:
                 googleProperties.setMag(renewable.getOctober());
                 break;
-
-            case 11:
+            case 10:
                 googleProperties.setMag(renewable.getNovember());
                 break;
-
-            case 12:
+            case 11:
                 googleProperties.setMag(renewable.getDecember());
                 break;
 

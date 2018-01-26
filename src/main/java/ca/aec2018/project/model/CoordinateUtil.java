@@ -1,10 +1,12 @@
 package ca.aec2018.project.model;
 
 import ca.aec2018.project.ProjectApplication;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.lang.Math;
 
+@Service
 public class CoordinateUtil {
 
     public Renewable getCoordRenewables(boolean solar, double longitude, double latitude){

@@ -85,14 +85,21 @@ function eqfeed_callback(results) {
     console.log(results)
     var heatmapData = [];
     for (var i = 0; i < results.length; i++) {
-        var coords = results.features[i].geometry.coordinates;
-        var latLng = new google.maps.LatLng(coords[1], coords[0]);
-        heatmapData.push(latLng);
+        var renewable = results[i]
+        var coords = renewable.geometry.coordinates;
+        var mag = renewable.properties.mag/5;
+        var latLng = new google.maps.LatLng(coords[0], coords[1]);
+        var weighted = {
+            location: latLng,
+            weight: mag
+        };
+        heatmapData.push(weighted);
     }
+    console.log(heatmapData);
     var heatmap = new google.maps.visualization.HeatmapLayer({
         data: heatmapData,
-        dissipating: false,
-        map: map
+        map: map,
+        radius: 20
     });
 }
 
