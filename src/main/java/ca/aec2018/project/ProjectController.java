@@ -112,8 +112,42 @@ public class ProjectController {
      */
     @GetMapping("/wind/coordinates")
     @ResponseBody
-    public List<GoogleRenewable> getWindDataForRegion(@RequestBody List<Integer> coordinateX, @RequestBody List<Integer> coordinateY) {
-        return null;
+    public Wind getWindDataForRegion(@RequestBody List<Double> coordinateX, @RequestBody List<Double> coordinateY) {
+        List<Renewable> windRanges = coordinateUtil.renewablesInRange(new Coordinate(coordinateX.get(0), coordinateX.get(1)), new Coordinate(coordinateY.get(0), coordinateY.get(1)), false);
+
+        Wind aggregatedWind = new Wind();
+
+        for(Renewable wind : windRanges) {
+            aggregatedWind.setJanuary(aggregatedWind.getJanuary() + wind.getJanuary());
+            aggregatedWind.setFebruary(aggregatedWind.getFebruary() + wind.getFebruary());
+            aggregatedWind.setMarch(aggregatedWind.getMarch() + wind.getMarch());
+            aggregatedWind.setApril(aggregatedWind.getApril() + wind.getApril());
+            aggregatedWind.setMay(aggregatedWind.getMay() + wind.getMay());
+            aggregatedWind.setJune(aggregatedWind.getJune() + wind.getJune());
+            aggregatedWind.setJuly(aggregatedWind.getJuly() + wind.getJuly());
+            aggregatedWind.setAugust(aggregatedWind.getAugust() + wind.getAugust());
+            aggregatedWind.setSeptember(aggregatedWind.getSeptember() + wind.getSeptember());
+            aggregatedWind.setOctober(aggregatedWind.getOctober() + wind.getOctober());
+            aggregatedWind.setNovember(aggregatedWind.getNovember() + wind.getNovember());
+            aggregatedWind.setDecember(aggregatedWind.getDecember() + wind.getDecember());
+            aggregatedWind.setAnnualAverage(aggregatedWind.getAnnualAverage() + wind.getAnnualAverage());
+        }
+
+        aggregatedWind.setJanuary(aggregatedWind.getJanuary() / windRanges.size());
+        aggregatedWind.setFebruary(aggregatedWind.getFebruary() / windRanges.size());
+        aggregatedWind.setMarch(aggregatedWind.getMarch() / windRanges.size());
+        aggregatedWind.setApril(aggregatedWind.getApril() / windRanges.size());
+        aggregatedWind.setMay(aggregatedWind.getMay() / windRanges.size());
+        aggregatedWind.setJune(aggregatedWind.getJune() / windRanges.size());
+        aggregatedWind.setJuly(aggregatedWind.getJuly() / windRanges.size());
+        aggregatedWind.setAugust(aggregatedWind.getAugust() / windRanges.size());
+        aggregatedWind.setSeptember(aggregatedWind.getSeptember() / windRanges.size());
+        aggregatedWind.setOctober(aggregatedWind.getOctober() / windRanges.size());
+        aggregatedWind.setNovember(aggregatedWind.getNovember() / windRanges.size());
+        aggregatedWind.setDecember(aggregatedWind.getDecember() / windRanges.size());
+        aggregatedWind.setAnnualAverage(aggregatedWind.getAnnualAverage() / windRanges.size());
+
+        return aggregatedWind;
     }
 
     /**
@@ -122,7 +156,41 @@ public class ProjectController {
      */
     @GetMapping("/solar/coordinates")
     @ResponseBody
-    public List<GoogleRenewable> getSolarDataForRegion(@RequestBody List<Integer> coordinateX, @RequestBody List<Integer> coordinateY) {
-        return null;
+    public Solar getSolarDataForRegion(@RequestBody List<Double> coordinateX, @RequestBody List<Integer> coordinateY) {
+        List<Renewable> solarRanges = coordinateUtil.renewablesInRange(new Coordinate(coordinateX.get(0), coordinateX.get(1)), new Coordinate(coordinateY.get(0), coordinateY.get(1)), false);
+
+        Solar aggregatedSolar = new Solar();
+
+        for(Renewable solar : solarRanges) {
+            aggregatedSolar.setJanuary(aggregatedSolar.getJanuary() + solar.getJanuary());
+            aggregatedSolar.setFebruary(aggregatedSolar.getFebruary() + solar.getFebruary());
+            aggregatedSolar.setMarch(aggregatedSolar.getMarch() + solar.getMarch());
+            aggregatedSolar.setApril(aggregatedSolar.getApril() + solar.getApril());
+            aggregatedSolar.setMay(aggregatedSolar.getMay() + solar.getMay());
+            aggregatedSolar.setJune(aggregatedSolar.getJune() + solar.getJune());
+            aggregatedSolar.setJuly(aggregatedSolar.getJuly() + solar.getJuly());
+            aggregatedSolar.setAugust(aggregatedSolar.getAugust() + solar.getAugust());
+            aggregatedSolar.setSeptember(aggregatedSolar.getSeptember() + solar.getSeptember());
+            aggregatedSolar.setOctober(aggregatedSolar.getOctober() + solar.getOctober());
+            aggregatedSolar.setNovember(aggregatedSolar.getNovember() + solar.getNovember());
+            aggregatedSolar.setDecember(aggregatedSolar.getDecember() + solar.getDecember());
+            aggregatedSolar.setAnnualAverage(aggregatedSolar.getAnnualAverage() + solar.getAnnualAverage());
+        }
+
+        aggregatedSolar.setJanuary(aggregatedSolar.getJanuary() / solarRanges.size());
+        aggregatedSolar.setFebruary(aggregatedSolar.getFebruary() / solarRanges.size());
+        aggregatedSolar.setMarch(aggregatedSolar.getMarch() / solarRanges.size());
+        aggregatedSolar.setApril(aggregatedSolar.getApril() / solarRanges.size());
+        aggregatedSolar.setMay(aggregatedSolar.getMay() / solarRanges.size());
+        aggregatedSolar.setJune(aggregatedSolar.getJune() / solarRanges.size());
+        aggregatedSolar.setJuly(aggregatedSolar.getJuly() / solarRanges.size());
+        aggregatedSolar.setAugust(aggregatedSolar.getAugust() / solarRanges.size());
+        aggregatedSolar.setSeptember(aggregatedSolar.getSeptember() / solarRanges.size());
+        aggregatedSolar.setOctober(aggregatedSolar.getOctober() / solarRanges.size());
+        aggregatedSolar.setNovember(aggregatedSolar.getNovember() / solarRanges.size());
+        aggregatedSolar.setDecember(aggregatedSolar.getDecember() / solarRanges.size());
+        aggregatedSolar.setAnnualAverage(aggregatedSolar.getAnnualAverage() / solarRanges.size());
+
+        return aggregatedSolar;
     }
 }

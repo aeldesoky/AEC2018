@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.lang.Math;
+import java.util.Set;
 
 @Service
 public class CoordinateUtil {
@@ -14,8 +15,26 @@ public class CoordinateUtil {
         return getCoordRenewables(solar, coordinate);
     }
 
-    public ArrayList<Renewable> renewablesInRange(Coordinate c1, Coordinate c2){
-        return null;
+    public ArrayList<Renewable> renewablesInRange(Coordinate c1, Coordinate c2, boolean solar){
+        ArrayList<Renewable> renewablesInRange = new ArrayList<>();
+
+        if(solar) {
+            Set<Integer> keys = ProjectApplication.solarData.keySet();
+            for(Integer s : keys) {
+                Solar solarObj = ProjectApplication.solarData.get(s);
+                if()
+                    renewablesInRange.add(solarObj);
+            }
+        } else {
+            Set<Integer> keys = ProjectApplication.windData.keySet();
+            for(Integer w : keys) {
+                Wind solarObj = ProjectApplication.windData.get(w);
+                if()
+                    renewablesInRange.add(solarObj);
+            }
+        }
+
+        return renewablesInRange;
     }
 
     public Renewable getCoordRenewables(boolean solar, Coordinate coordinate) {
