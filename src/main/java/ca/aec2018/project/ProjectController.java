@@ -140,32 +140,56 @@ public class ProjectController {
         return "index";
     }
 
+    /**
+     * The controller method for the index page.
+     * @return The twig file name.
+     */
     @GetMapping("/")
     public String index() {
         return "index";
     }
 
+    /**
+     * The controller method for the solar page.
+     * @return The twig file name.
+     */
     @GetMapping("/solar")
     public String solar() {
         return "map";
     }
 
+    /**
+     * The controller method for the wind page.
+     * @return The twig file name.
+     */
     @GetMapping("/wind")
     public String wind() {
         return "map";
     }
 
+    /**
+     * The controller method for the documentation page.
+     * @return The twig file name.
+     */
     @GetMapping("/docs")
     public String docs() {
         return "docs";
     }
 
+    /**
+     * The REST controller method to get the wind data.
+     * @return The Google JSON objects to render the wind heat map.
+     */
     @GetMapping("/wind/{month}")
     @ResponseBody
     public List<GoogleRenewable> getWindData(@PathVariable int month) {
         return renewableService.allRenewableToGoogleRenewable(false, month);
     }
 
+    /**
+     * The REST controller method to get the solar data.
+     * @return The Google JSON objects to render the solar heat map.
+     */
     @GetMapping("/solar/{month}")
     @ResponseBody
     public List<GoogleRenewable> getSolarData(@PathVariable int month) {
