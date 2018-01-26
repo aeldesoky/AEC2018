@@ -22,7 +22,7 @@ public class RenewableService {
      *     - int used to get the solar or wind repository.
      * @param month  - int used to identify the month
      */
-    public void renewableToGoogleRenewable(boolean solar, int month) {
+    public List<GoogleRenewable> getRenewablesByMonth(boolean solar, int month) {
         ArrayList<GoogleRenewable> googleRenewables = new ArrayList<GoogleRenewable>();
 
 
@@ -43,6 +43,8 @@ public class RenewableService {
                 googleRenewables.add(renewableToGoogleRenewable(winds.get(key),month));
             }
         }
+
+        return googleRenewables;
     }
 
     private GoogleRenewable renewableToGoogleRenewable(Renewable renewable, int month){
@@ -109,9 +111,5 @@ public class RenewableService {
 
         return googleRenewable;
 
-    }
-
-    public List<GoogleRenewable> allRenewableToGoogleRenewable(boolean solar, int month) {
-        return null;
     }
 }
