@@ -42,21 +42,89 @@
     </div>
     <script>
         var map;
+        var firstPoint;
+        var rectangle;
+
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 3,
-                center: {lat: 56.1304, lng: 106.3468},
+                center: {lat: 55.658996, lng: -97.031250},
                 mapTypeId: 'terrain'
             });
 
             // Create a <script> tag and set the USGS URL as the source.
             var script = document.createElement('script');
+            map.addListener('click', addPoint);
 
             // This example uses a local copy of the GeoJSON stored at
             // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
             script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
             document.getElementsByTagName('head')[0].appendChild(script);
 
+        }
+
+        function addPoint(event) {
+            console.log(event)
+            if(firstPoint === undefined || firstPoint === null){
+                firstPoint = event.latLng;
+            } else {
+                if(rectangle !== undefined) {
+                    rectangle.setMap(null);
+                }
+
+                secondPoint = event.latLng;
+                north = max(firstPoint.lat(), secondPoint.lat());
+                south = min(firstPoint.lat(), secondPoint.lat)();
+                east = max(firstPoint.lng(), secondPoint.lng());
+                west = min(firstPoint.lng(), secondPoint.lng());
+
+                var newBounds = new google.maps.LatLngBounds(
+                    firstPoint,
+                    secondPoint
+                );
+                map.fitBounds(newBounds);
+
+
+                rectangle = new google.maps.Rectangle({
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: '#FF0000',
+                    fillOpacity: 0.35,
+                    map: map,
+                    bounds: {
+                        north: north,
+                        south: south,
+                        east: east,
+                        west: west
+                    }
+                });
+                console.log(rectangle)
+
+                firstPoint = null;
+            }
+
+            // Add a new marker at the new plotted point on the polyline.
+            var marker = new google.maps.Marker({
+                position: event.latLng,
+                map: map
+            });
+        }
+
+        function min(num1, num2) {
+            if(num1 < num2){
+                return num1;
+            }
+
+            return num2;
+        }
+
+        function max(num1, num2) {
+            if(num1 > num2){
+                return num1;
+            }
+
+            return num2;
         }
 
         function eqfeed_callback(results) {
