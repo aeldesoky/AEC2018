@@ -81,7 +81,7 @@ public class ProjectController {
             s.setAugust(Double.parseDouble(line[9]));
             s.setSeptember(Double.parseDouble(line[10]));
             s.setOctober(Double.parseDouble(line[11]));
-            s.setNovermber(Double.parseDouble(line[12]));
+            s.setNovember(Double.parseDouble(line[12]));
             s.setDecember(Double.parseDouble(line[13]));
             solarRepository.save(s);
 
@@ -123,7 +123,7 @@ public class ProjectController {
             w.setAugust(Double.parseDouble(line[9]));
             w.setSeptember(Double.parseDouble(line[10]));
             w.setOctober(Double.parseDouble(line[11]));
-            w.setNovermber(Double.parseDouble(line[12]));
+            w.setNovember(Double.parseDouble(line[12]));
             w.setDecember(Double.parseDouble(line[13]));
 
             windRepository.save(w);
