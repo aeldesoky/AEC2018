@@ -1,14 +1,8 @@
 package ca.aec2018.project.model;
 
-import javax.persistence.*;
-
-@Entity
 public class Wind implements Renewable{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @OneToOne
     private Coordinate coordinate;
 
     private Double annualAverage;
