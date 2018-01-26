@@ -88,10 +88,10 @@ public class ProjectController {
      * The REST controller method to get the wind data for a specific coordinate.
      * @return The Google JSON objects to render the wind heat map.
      */
-    @GetMapping("/wind/coordinate")
+    @GetMapping("/wind/coordinate/{lat}/{lng}")
     @ResponseBody
-    public ArrayList<Double> getWindDataForCoordinate(@RequestBody List<Integer> coordinate) {
-        Coordinate coord = new Coordinate(coordinate.get(0), coordinate.get(1));
+    public ArrayList<Double> getWindDataForCoordinate(@PathVariable Double lat, @PathVariable Double lng) {
+        Coordinate coord = new Coordinate(lat, lng);
         return coordinateUtil.getCoordRenewables(false, coord).getMonthValues();
     }
 
