@@ -1,10 +1,8 @@
 package ca.aec2018.project.model;
 
 import ca.aec2018.project.ProjectApplication;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
 import java.util.List;
 import java.util.Set;
 
