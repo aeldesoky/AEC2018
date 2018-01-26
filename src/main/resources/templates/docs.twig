@@ -1,4 +1,4 @@
-{% extends 'dashboard.twig' %}
+{% extends 'base.twig' %}
 
 {% block scripts %}
     {{ parent() }}
@@ -6,10 +6,15 @@
 {% endblock %}
 
 {% block content %}
+    <div class="container">
+        <div class="row">
+            <div id="markdown" class="col"></div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block scripts %}
+    {{ parent() }}
     <script type="text/javascript" src="/static/js/showdown.min.js"></script>
-    <script type="text/javascript" src="/static/js/showdown.min.js.map"></script>
     <script type="text/javascript" src="/static/js/docs.js"></script>
 {% endblock %}
