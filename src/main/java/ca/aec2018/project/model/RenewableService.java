@@ -4,6 +4,8 @@ import com.sun.deploy.resources.Deployment_pt_BR;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 public class RenewableService {
     @Autowired
     Renewable renewable;
@@ -58,5 +60,9 @@ public class RenewableService {
         googleRenewable.setType("Feature");
 
 
+    }
+
+    public List<GoogleRenewable> allRenewableToGoogleRenewable(boolean solar, int month) {
+        return null;
     }
 }

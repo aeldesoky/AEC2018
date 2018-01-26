@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -150,5 +153,17 @@ public class ProjectController {
     @GetMapping("/wind")
     public String wind() {
         return "map";
+    }
+
+    @GetMapping("/wind/{month}")
+    @ResponseBody
+    public List<GoogleRenewable> getWindData(@PathVariable int month) {
+        return renewableService.allRenewableToGoogleRenewable(false, month);
+    }
+
+    @GetMapping("/solar/{month}")
+    @ResponseBody
+    public List<GoogleRenewable> getSolarData(@PathVariable int month) {
+        return renewableService.allRenewableToGoogleRenewable(false, month);
     }
 }
