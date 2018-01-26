@@ -12,6 +12,10 @@ public class CoordinateUtil {
         return getCoordRenewables(solar, coordinate);
     }
 
+    public ArrayList<Renewable> renewablesInRange(Coordinate c1, Coordinate c2){
+        return null;
+    }
+
     public Renewable getCoordRenewables(boolean solar, Coordinate coordinate) {
 
         Renewable renewable;

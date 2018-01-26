@@ -1,6 +1,7 @@
 package ca.aec2018.project.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 public class Solar implements Renewable{
     private Integer id;
@@ -142,5 +143,23 @@ public class Solar implements Renewable{
 
     public void setCoordinate(Coordinate coordinate) {
         this.coordinate = coordinate;
+    }
+
+    @Override
+    public ArrayList<Double> getMonthValues() {
+
+        ArrayList<Double> monthList = new ArrayList<Double>();
+        monthList.add(january);
+        monthList.add(february);
+        monthList.add(march);
+        monthList.add(april);
+        monthList.add(june);
+        monthList.add(july);
+        monthList.add(august);
+        monthList.add(september);
+        monthList.add(october);
+        monthList.add(november);
+        monthList.add(december);
+        return monthList;
     }
 }

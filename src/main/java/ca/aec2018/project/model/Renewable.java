@@ -1,5 +1,6 @@
 package ca.aec2018.project.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +22,8 @@ public interface Renewable {
     Double getOctober();
     Double getNovember();
     Double getDecember();
+    ArrayList<Double> getMonthValues();
+
 
 
 }
