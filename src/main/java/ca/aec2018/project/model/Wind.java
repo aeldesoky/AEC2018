@@ -23,7 +23,7 @@ public class Wind implements Renewable {
     private Double august;
     private Double september;
     private Double october;
-    private Double novermber;
+    private Double november;
     private Double december;
 
     public void setCoordinate(Coordinate coordinate) {
@@ -110,12 +110,12 @@ public class Wind implements Renewable {
         this.october = october;
     }
 
-    public Double getNovermber() {
-        return novermber;
+    public Double getNovember() {
+        return november;
     }
 
-    public void setNovermber(Double novermber) {
-        this.novermber = novermber;
+    public void setNovember(Double november) {
+        this.november = november;
     }
 
     public Double getDecember() {
