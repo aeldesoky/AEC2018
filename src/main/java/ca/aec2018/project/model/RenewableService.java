@@ -3,7 +3,7 @@ package ca.aec2018.project.model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+<<<<<<< HEAD
 import java.util.List;
 
 @Service

@@ -2,13 +2,9 @@ package ca.aec2018.project.model;
 
 import javax.persistence.*;
 
-@Entity
 public class Solar implements Renewable{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @OneToOne
     private Coordinate coordinate;
 
     private Double january;
