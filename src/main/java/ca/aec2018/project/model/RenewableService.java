@@ -1,19 +1,15 @@
 package ca.aec2018.project.model;
 
+import ca.aec2018.project.ProjectApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+<<<<<<< HEAD
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class RenewableService {
-    @Autowired
-    SolarRepository solarRepository;
-
-    @Autowired
-    WindRepository windRepository;
-
 
     /**
      * This method is used to convert the renewable object into a googleRenewable object.
@@ -21,23 +17,30 @@ public class RenewableService {
      * The googleRenewable object is based on the GoogleRenewable class, which has the same
      * parameters used by the google maps API to generate the heatMap Layer.
      * @param solar  - boolean to check if the data is for solar energy
-     * @param id     - int used to get the solar or wind repository.
+     *     - int used to get the solar or wind repository.
      * @param month  - int used to identify the month
      */
-    public void renewableToGoogleRenewable(boolean solar, int id, int month) {
-        Renewable renewable;
+    public void renewableToGoogleRenewable(boolean solar, int month) {
+        Renewable renewable = new Solar();
         Double[] coordinates = new Double[2];
         GoogleRenewable googleRenewable = new GoogleRenewable();
         Geometry googleGeometry = new Geometry();
         Properties googleProperties = new Properties();
         Coordinate coordinateObj;
 
+
+
         if (solar) {
-            renewable = solarRepository.findOne(id);
+            Set<Integer> keys = ProjectApplication.solarData.keySet();
+
+            for(Integer key : keys) {
+
+            }
+
         }
 
         else {
-            renewable = windRepository.findOne(id);
+
         }
 
 

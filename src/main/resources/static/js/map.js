@@ -2,6 +2,8 @@ var map;
 var firstPoint;
 var firstMarker;
 var secondMarker;
+var secondPoint;
+var rectangle;
 
 /**
  * This function initializes the map at the html element with 'map' is the id.
@@ -43,16 +45,36 @@ function addPoint(event) {
             map: map
         });
     } else {
+        if(rectangle !== undefined) {
+            rectangle.setMap(null);
+        }
+
         secondPoint = event.latLng;
         secondMarker = new google.maps.Marker({
             position: event.latLng,
             map: map
         });
-        var newBounds = new google.maps.LatLngBounds(
-            firstPoint,
-            secondPoint
-        );
-        map.fitBounds(newBounds);
+
+        north = max(firstPoint.lat(), secondPoint.lat());
+        south = min(firstPoint.lat(), secondPoint.lat)();
+        east = max(firstPoint.lng(), secondPoint.lng());
+        west = min(firstPoint.lng(), secondPoint.lng());
+
+        rectangle = new google.maps.Rectangle({
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35,
+            map: map,
+            bounds: {
+                north: north,
+                south: south,
+                east: east,
+                west: west
+            }
+        });
+
 
         firstPoint = null;
     }
@@ -74,4 +96,32 @@ function eqfeed_callback(results) {
         dissipating: false,
         map: map
     });
+}
+
+/**
+ * This function returns the minumum value of the two numbers.
+ * @param The first number.
+ * @param The second number.
+ * @returns The smallest of the two numbers.
+ */
+function min(num1, num2) {
+    if(num1 < num2){
+        return num1;
+    }
+
+    return num2;
+}
+
+/**
+ * This function returns the maximum value of the two numbers.
+ * @param The first number.
+ * @param The second number.
+ * @returns The largest of the two numbers.
+ */
+function max(num1, num2) {
+    if(num1 > num2){
+        return num1;
+    }
+
+    return num2;
 }

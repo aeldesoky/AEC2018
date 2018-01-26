@@ -2,13 +2,7 @@ package ca.aec2018.project.model;
 
 import javax.persistence.*;
 
-@Entity
-@Table(uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"latitude", "longitude"})
-})
 public class Coordinate {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private Integer latitude;

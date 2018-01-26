@@ -21,4 +21,6 @@ public interface Renewable {
     Double getOctober();
     Double getNovember();
     Double getDecember();
+
+
 }
