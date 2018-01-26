@@ -160,6 +160,7 @@ public class Solar implements Renewable{
         monthList.add(october);
         monthList.add(november);
         monthList.add(december);
+        monthList.add(annualAverage);
         return monthList;
     }
 }

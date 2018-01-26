@@ -16,25 +16,30 @@ public class CoordinateUtil {
     }
 
     public ArrayList<Renewable> renewablesInRange(Coordinate c1, Coordinate c2, boolean solar){
-        ArrayList<Renewable> renewablesInRange = new ArrayList<>();
+//        ArrayList<Renewable> renewablesInRange = new ArrayList<>();
+//
+//        if(solar) {
+//            Set<Integer> keys = ProjectApplication.solarData.keySet();
+//            for(Integer s : keys) {
+//                Solar solarObj = ProjectApplication.solarData.get(s);
+//                if(){
+//                    renewablesInRange.add(solarObj);
+//                }
+//
+//            }
+//        } else {
+//            Set<Integer> keys = ProjectApplication.windData.keySet();
+//            for(Integer w : keys) {
+//                Wind solarObj = ProjectApplication.windData.get(w);
+//                if(){
+//                    renewablesInRange.add(solarObj);
+//                }
+//            }
+//        }
+//
+//        return renewablesInRange;
 
-        if(solar) {
-            Set<Integer> keys = ProjectApplication.solarData.keySet();
-            for(Integer s : keys) {
-                Solar solarObj = ProjectApplication.solarData.get(s);
-                if()
-                    renewablesInRange.add(solarObj);
-            }
-        } else {
-            Set<Integer> keys = ProjectApplication.windData.keySet();
-            for(Integer w : keys) {
-                Wind solarObj = ProjectApplication.windData.get(w);
-                if()
-                    renewablesInRange.add(solarObj);
-            }
-        }
-
-        return renewablesInRange;
+        return null;
     }
 
     public Renewable getCoordRenewables(boolean solar, Coordinate coordinate) {
