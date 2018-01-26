@@ -24,6 +24,9 @@ public class ProjectController {
     @Autowired
     RenewableService renewableService;
 
+    @Autowired
+    CoordinateUtil coordinateUtil;
+
     /**
      * The controller method for the index page.
      * @return The twig file name.
