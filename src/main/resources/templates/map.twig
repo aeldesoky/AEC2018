@@ -30,11 +30,18 @@
         <div class="row">
             <div class="col">
                 <select class="mdb-select colorful-select dropdown-primary">
-                    <option value="1">January</option>
-                    <option value="2">February</option>
-                    <option value="3">March</option>
-                    <option value="4">April</option>
-                    <option value="5">May</option>
+                    <option value="0">January</option>
+                    <option value="1">February</option>
+                    <option value="2">March</option>
+                    <option value="3">April</option>
+                    <option value="4">May</option>
+                    <option value="5">June</option>
+                    <option value="6">July</option>
+                    <option value="7">August</option>
+                    <option value="8">September</option>
+                    <option value="9">October</option>
+                    <option value="10">November</option>
+                    <option value="11">December</option>
                 </select>
                 <label>Select Month</label>
             </div>
@@ -43,8 +50,12 @@
     <script>
         var map;
         var firstPoint;
-        var rectangle;
+        var firstMarker;
+        var secondMarker;
 
+        /**
+         * This function initializes the map at the html element with 'map' is the id.
+         */
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 3,
@@ -63,70 +74,44 @@
 
         }
 
+        /**
+         * This is the event handler for a map click. It creates markers and provides new bounds to the map
+         * if two markers have been created.
+         * @param event The click event with a latLng property.
+         */
         function addPoint(event) {
             console.log(event)
             if(firstPoint === undefined || firstPoint === null){
-                firstPoint = event.latLng;
-            } else {
-                if(rectangle !== undefined) {
-                    rectangle.setMap(null);
+                if(firstMarker !== undefined) {
+                    firstMarker.setMap(null);
+                    secondMarker.setMap(null);
                 }
 
+                firstPoint = event.latLng;
+                firstMarker = new google.maps.Marker({
+                    position: event.latLng,
+                    map: map
+                });
+            } else {
                 secondPoint = event.latLng;
-                north = max(firstPoint.lat(), secondPoint.lat());
-                south = min(firstPoint.lat(), secondPoint.lat)();
-                east = max(firstPoint.lng(), secondPoint.lng());
-                west = min(firstPoint.lng(), secondPoint.lng());
-
+                secondMarker = new google.maps.Marker({
+                    position: event.latLng,
+                    map: map
+                });
                 var newBounds = new google.maps.LatLngBounds(
                     firstPoint,
                     secondPoint
                 );
                 map.fitBounds(newBounds);
 
-
-                rectangle = new google.maps.Rectangle({
-                    strokeColor: '#FF0000',
-                    strokeOpacity: 0.8,
-                    strokeWeight: 2,
-                    fillColor: '#FF0000',
-                    fillOpacity: 0.35,
-                    map: map,
-                    bounds: {
-                        north: north,
-                        south: south,
-                        east: east,
-                        west: west
-                    }
-                });
-                console.log(rectangle)
-
                 firstPoint = null;
             }
-
-            // Add a new marker at the new plotted point on the polyline.
-            var marker = new google.maps.Marker({
-                position: event.latLng,
-                map: map
-            });
         }
 
-        function min(num1, num2) {
-            if(num1 < num2){
-                return num1;
-            }
-
-            return num2;
-        }
-
-        function max(num1, num2) {
-            if(num1 > num2){
-                return num1;
-            }
-
-            return num2;
-        }
-
+        /**
+         * This method creates the heatmap given json results.
+         * @param results The json object to render the heatmap.
+         */
         function eqfeed_callback(results) {
             var heatmapData = [];
             for (var i = 0; i < results.features.length; i++) {
