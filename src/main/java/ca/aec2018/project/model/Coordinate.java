@@ -14,6 +14,11 @@ public class Coordinate {
         this.longitude = longitude;
     }
 
+    public Coordinate(double latitude, double longitude){
+        this.longitude = (int)Math.round(longitude);
+        this.latitude = (int)Math.round(latitude);
+    }
+
     public Integer getId() {
         return id;
     }

@@ -3,9 +3,14 @@ package ca.aec2018.project.model;
 import ca.aec2018.project.ProjectApplication;
 
 import java.util.ArrayList;
+import java.lang.Math;
 
 public class CoordinateUtil {
 
+    public Renewable getCoordRenewables(boolean solar, double longitude, double latitude){
+        Coordinate coordinate = new Coordinate(longitude, latitude);
+        return getCoordRenewables(solar, coordinate);
+    }
 
     public Renewable getCoordRenewables(boolean solar, Coordinate coordinate) {
 
@@ -28,4 +33,6 @@ public class CoordinateUtil {
         }
         return renewable;
     }
+
+
 }
