@@ -47,7 +47,7 @@
             </div>
         </div>
         <div class="row" style="width: 100%; height=500px;">
-            <canvas id="wind-graph" height="500" style="width: 100%; height=500px;"></canvas>
+            <canvas id="wind-graph" height="500" style="width: 100%; height:500px; display:none;"></canvas>
         </div>
     </div>
     <script>
@@ -97,12 +97,22 @@
                         display: true,
                         scaleLabel: {
                             display: true,
-                            labelString: 'Intensity'
+                            labelString: 'Wind Intensity'
                         }
                     }]
                 }
             }
         };
+
+        //on click action (single coordinate)
+        //perform ajax get
+        //render the graph from response
+        //display graph
+
+        //on select region action
+        //perform ajax get
+        //render the graph from response
+        //display graph
 
         window.onload = function() {
             var ctx = document.getElementById("wind-graph").getContext("2d");
