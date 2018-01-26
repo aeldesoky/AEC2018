@@ -11,6 +11,8 @@ public class Solar {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    private Coordinate coordinateId;
+
     private Double[] months;
 
     private Double annualAverage;

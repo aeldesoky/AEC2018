@@ -11,6 +11,8 @@ public class Wind {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    private Coordinate coordinate;
+
     private Double[] months;
 
     private Double annualAverage;
