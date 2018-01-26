@@ -3,7 +3,7 @@ package ca.aec2018.project.model;
 import javax.persistence.*;
 
 @Entity
-public class Wind implements Renewable {
+public class Wind{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -134,12 +134,10 @@ public class Wind implements Renewable {
         this.id = id;
     }
 
-    @Override
     public Double getAnnualAverage() {
         return annualAverage;
     }
 
-    @Override
     public Coordinate getCoordinate() {
         return coordinate;
     }
