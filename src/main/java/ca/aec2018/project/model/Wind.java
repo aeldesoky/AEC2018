@@ -1,7 +1,6 @@
 package ca.aec2018.project.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Wind implements Renewable {
@@ -11,6 +10,8 @@ public class Wind implements Renewable {
 
     @OneToOne
     private Coordinate coordinate;
+
+    private Double annualAverage;
 
     private Double january;
     private Double february;
@@ -124,8 +125,6 @@ public class Wind implements Renewable {
     public void setDecember(Double december) {
         this.december = december;
     }
-
-    private Double annualAverage;
 
     public Integer getId() {
         return id;

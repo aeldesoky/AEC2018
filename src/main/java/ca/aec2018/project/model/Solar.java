@@ -1,7 +1,6 @@
 package ca.aec2018.project.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Solar implements Renewable {
@@ -26,11 +25,6 @@ public class Solar implements Renewable {
     private Double december;
 
     private Double annualAverage;
-
-    public Solar(Coordinate coordinate, Double annualAverage) {
-        this.coordinate = coordinate;
-        this.annualAverage = annualAverage;
-    }
 
     public Integer getId() {
         return id;

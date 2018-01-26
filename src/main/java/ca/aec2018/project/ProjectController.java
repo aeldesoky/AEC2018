@@ -63,7 +63,21 @@ public class ProjectController {
                 coord = coordinateRepository.findByLatitudeAndLongitude(latitude, longitude);
             }
 
-            s = new Solar(coord, Arrays.asList(dataPoints), annualAverage);
+            s = new Solar();
+            s.setAnnualAverage(annualAverage);
+            s.setCoordinate(coord);
+            s.setJanuary(Double.parseDouble(line[2]));
+            s.setFebruary(Double.parseDouble(line[3]));
+            s.setMarch(Double.parseDouble(line[4]));
+            s.setApril(Double.parseDouble(line[5]));
+            s.setMay(Double.parseDouble(line[6]));
+            s.setJune(Double.parseDouble(line[7]));
+            s.setJuly(Double.parseDouble(line[8]));
+            s.setAugust(Double.parseDouble(line[9]));
+            s.setSeptember(Double.parseDouble(line[10]));
+            s.setOctober(Double.parseDouble(line[11]));
+            s.setNovermber(Double.parseDouble(line[12]));
+            s.setDecember(Double.parseDouble(line[13]));
             solarRepository.save(s);
 
             System.out.println("Saved Solar Object: " + s.getId());
@@ -91,7 +105,22 @@ public class ProjectController {
                 coord = coordinateRepository.findByLatitudeAndLongitude(latitude, longitude);
             }
 
-            w = new Wind(coord, Arrays.asList(dataPoints), annualAverage);
+            w = new Wind();
+            w.setAnnualAverage(annualAverage);
+            w.setCoordinate(coord);
+            w.setJanuary(Double.parseDouble(line[2]));
+            w.setFebruary(Double.parseDouble(line[3]));
+            w.setMarch(Double.parseDouble(line[4]));
+            w.setApril(Double.parseDouble(line[5]));
+            w.setMay(Double.parseDouble(line[6]));
+            w.setJune(Double.parseDouble(line[7]));
+            w.setJuly(Double.parseDouble(line[8]));
+            w.setAugust(Double.parseDouble(line[9]));
+            w.setSeptember(Double.parseDouble(line[10]));
+            w.setOctober(Double.parseDouble(line[11]));
+            w.setNovermber(Double.parseDouble(line[12]));
+            w.setDecember(Double.parseDouble(line[13]));
+
             windRepository.save(w);
 
             System.out.println("Saved Wind Object: " + w.getId());
