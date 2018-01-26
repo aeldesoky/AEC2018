@@ -19,6 +19,9 @@ public class ProjectController {
     WindRepository windRepository;
 
     @Autowired
+    RenewableService renewableService;
+
+    @Autowired
     SolarRepository solarRepository;
 
     @Autowired
