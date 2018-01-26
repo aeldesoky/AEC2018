@@ -155,7 +155,7 @@ public class ProjectController {
      */
     @GetMapping("/solar")
     public String solar() {
-        return "map";
+        return "solar";
     }
 
     /**
@@ -164,7 +164,7 @@ public class ProjectController {
      */
     @GetMapping("/wind")
     public String wind() {
-        return "map";
+        return "wind";
     }
 
     /**

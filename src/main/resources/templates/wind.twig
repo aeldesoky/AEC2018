@@ -1,0 +1,194 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+        <script type="text/javascript" src="/static/js/Chart.js"></script>
+
+        <style>
+            /* Always set the map height explicitly to define the size of the div
+             * element that contains the map. */
+            #map {
+                height: 100%;
+            }
+            /* Optional: Makes the sample page fill the window. */
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            .container-fluid {
+                margin-top: 20px;
+            }
+        </style>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <select class="mdb-select colorful-select dropdown-primary">
+                    <option value="0">January</option>
+                    <option value="1">February</option>
+                    <option value="2">March</option>
+                    <option value="3">April</option>
+                    <option value="4">May</option>
+                    <option value="5">June</option>
+                    <option value="6">July</option>
+                    <option value="7">August</option>
+                    <option value="8">September</option>
+                    <option value="9">October</option>
+                    <option value="10">November</option>
+                    <option value="11">December</option>
+                </select>
+                <label>Select Month</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" style="height: 500px">
+                <div id="map"></div>
+            </div>
+        </div>
+        <div class="row" style="width: 100%; height=500px;">
+            <canvas id="wind-graph" height="500" style="width: 100%; height=500px;"></canvas>
+        </div>
+    </div>
+    <script>
+        var map;
+        var firstPoint;
+        var firstMarker;
+        var secondMarker;
+
+        /**
+         * This function initializes the map at the html element with 'map' is the id.
+         */
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 3,
+                center: {lat: 55.658996, lng: -97.031250},
+                mapTypeId: 'terrain'
+            });
+
+            // Create a <script> tag and set the USGS URL as the source.
+            var script = document.createElement('script');
+            map.addListener('click', addPoint);
+
+            // This example uses a local copy of the GeoJSON stored at
+            // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+            script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+            document.getElementsByTagName('head')[0].appendChild(script);
+
+        }
+
+        /**
+         * This is the event handler for a map click. It creates markers and provides new bounds to the map
+         * if two markers have been created.
+         * @param event The click event with a latLng property.
+         */
+        function addPoint(event) {
+            console.log(event)
+            if(firstPoint === undefined || firstPoint === null){
+                if(firstMarker !== undefined) {
+                    firstMarker.setMap(null);
+                    secondMarker.setMap(null);
+                }
+
+                firstPoint = event.latLng;
+                firstMarker = new google.maps.Marker({
+                    position: event.latLng,
+                    map: map
+                });
+            } else {
+                secondPoint = event.latLng;
+                secondMarker = new google.maps.Marker({
+                    position: event.latLng,
+                    map: map
+                });
+                var newBounds = new google.maps.LatLngBounds(
+                    firstPoint,
+                    secondPoint
+                );
+                map.fitBounds(newBounds);
+
+                firstPoint = null;
+            }
+        }
+
+        /**
+         * This method creates the heatmap given json results.
+         * @param results The json object to render the heatmap.
+         */
+        function eqfeed_callback(results) {
+            var heatmapData = [];
+            for (var i = 0; i < results.features.length; i++) {
+                var coords = results.features[i].geometry.coordinates;
+                var latLng = new google.maps.LatLng(coords[1], coords[0]);
+                heatmapData.push(latLng);
+            }
+            var heatmap = new google.maps.visualization.HeatmapLayer({
+                data: heatmapData,
+                dissipating: false,
+                map: map
+            });
+        }
+
+        /* Render Graph Canvas */
+        var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var config = {
+            type: 'line',
+            data: {
+                labels: MONTHS,
+                datasets: [{
+                    label: "Monthly Average",
+                    data: [
+                        1,2,3,4,5,6,7,8,9,10,11,12
+                    ],
+                    fill: false,
+                }, {
+                    label: "Yearly Average",
+                    fill: false,
+                    data: [
+                        6,6,6,6,6,6,6,6,6,6,6,6
+                    ],
+                }]
+            },
+            options: {
+                responsive: true,
+                title:{
+                    display:true,
+                    text:'Wind Intensity Data'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Month'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Intensity'
+                        }
+                    }]
+                }
+            }
+        };
+
+        window.onload = function() {
+            var ctx = document.getElementById("wind-graph").getContext("2d");
+            window.myLine = new Chart(ctx, config);
+        };
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvAuBdVZjDGb0-C8kxFVbeSM50bkgtni8&libraries=visualization&callback=initMap">
+    </script>
+
+{% endblock %}
