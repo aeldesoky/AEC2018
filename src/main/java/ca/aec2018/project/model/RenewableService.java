@@ -1,11 +1,10 @@
 package ca.aec2018.project.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RenewableService {
-    @Autowired
-    Renewable renewable;
-
     @Autowired
     SolarRepository solarRepository;
 
