@@ -22,6 +22,7 @@ public class ProjectApplication {
 
 	public static void main(String[] args) {
 
+		// load data
 		File solarFile = new File("src/main/resources/solarNASA.txt");
 		File windFile = new File("src/main/resources/windNASA.txt");
 
