@@ -53,3 +53,5 @@ fabric.properties
 
 # Ignoring iml files
 *.iml
+
+*.DS_Store

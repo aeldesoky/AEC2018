@@ -15,7 +15,8 @@ public class Wind {
 
     private Double annualAverage;
 
-    public Wind(Double[] months, Double annualAverage) {
+    public Wind(Coordinate coordinate, Double[] months, Double annualAverage) {
+        this.coordinate = coordinate;
         this.months = months;
         this.annualAverage = annualAverage;
     }

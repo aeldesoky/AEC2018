@@ -15,7 +15,8 @@ public class Solar {
 
     private Double annualAverage;
 
-    public Solar(Double[] months, Double annualAverage) {
+    public Solar(Coordinate coordinate, Double[] months, Double annualAverage) {
+        this.coordinate = coordinate;
         this.months = months;
         this.annualAverage = annualAverage;
     }
