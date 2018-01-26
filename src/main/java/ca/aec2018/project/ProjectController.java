@@ -24,8 +24,8 @@ public class ProjectController {
     @Autowired
     RenewableService renewableService;
 
-    @Autowired
-    CoordinateUtil coordinateUtil;
+
+    CoordinateUtil coordinateUtil = new CoordinateUtil();
 
     /**
      * The controller method for the index page.
