@@ -17,6 +17,11 @@ public class Wind {
 
     private Double annualAverage;
 
+    public Wind(Double[] months, Double annualAverage) {
+        this.months = months;
+        this.annualAverage = annualAverage;
+    }
+
     public Integer getId() {
         return id;
     }

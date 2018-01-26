@@ -17,6 +17,11 @@ public class Solar {
 
     private Double annualAverage;
 
+    public Solar(Double[] months, Double annualAverage) {
+        this.months = months;
+        this.annualAverage = annualAverage;
+    }
+
     public Integer getId() {
         return id;
     }
