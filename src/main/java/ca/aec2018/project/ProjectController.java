@@ -12,4 +12,14 @@ public class ProjectController {
     public String index() {
         return "index";
     }
+
+    @GetMapping("/solar")
+    public String solar() {
+        return "map";
+    }
+
+    @GetMapping("/wind")
+    public String wind() {
+        return "map";
+    }
 }

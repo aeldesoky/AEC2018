@@ -1,9 +1,6 @@
 package ca.aec2018.project.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Wind {
@@ -11,6 +8,7 @@ public class Wind {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @OneToOne
     private Coordinate coordinate;
 
     private Double[] months;
