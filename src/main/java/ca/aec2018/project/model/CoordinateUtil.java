@@ -24,7 +24,7 @@ public class CoordinateUtil {
 
         here:
         while(coordinates.iterator().hasNext()){
-            if(coordinate.equals(coordinates.get(key))){
+            if(coordinate.sameCoord(coordinates.get(key))){
                 break here;
             }
             key++;
