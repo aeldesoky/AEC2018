@@ -55,6 +55,13 @@ public class ProjectApplicationTests {
 	}
 
     @Test
+    public void testDocs() throws Exception {
+        this.mockMvc.perform(get("/docs"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
     public void testSolarData() throws Exception {
         this.mockMvc.perform(get("/solar/0"))
                 .andDo(print())
