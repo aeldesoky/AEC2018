@@ -1,5 +1,7 @@
 package ca.aec2018.project;
 
+import ca.aec2018.project.model.RenewableService;
+import ca.aec2018.project.model.WindRepository;
 import ca.aec2018.project.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
