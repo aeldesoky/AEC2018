@@ -1,9 +1,6 @@
 package ca.aec2018.project.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Solar {
@@ -11,7 +8,8 @@ public class Solar {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private Coordinate coordinateId;
+    @OneToOne
+    private Coordinate coordinate;
 
     private Double[] months;
 
