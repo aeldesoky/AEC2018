@@ -12,6 +12,7 @@ public class Solar implements Renewable {
     @OneToOne
     private Coordinate coordinate;
 
+    @ElementCollection
     private List<Double> months;
 
     private Double annualAverage;
