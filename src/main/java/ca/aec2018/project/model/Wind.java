@@ -1,4 +1,4 @@
-package ca.aec2018.project;
+package ca.aec2018.project.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Coordinate {
+public class Wind {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
